@@ -1,0 +1,17 @@
+name: LINE Test Broadcast
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  send-test-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send test message to LINE
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+        run: |
+          curl -sS -w "\nHTTP_STATUS:%{http_code}\n" -X POST https://api.line.me/v2/bot/message/broadcast \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${LINE_CHANNEL_ACCESS_TOKEN}" \
+            -d '{"messages":[{"type":"text","text":"【テスト通知】日経225通知ツール\nセットアップ確認用のテストメッセージです。これが届いていれば設定は正常です。"}]}'
