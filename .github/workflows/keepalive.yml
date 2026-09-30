@@ -28,5 +28,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow enable "Nikkei225 Perfect Order LINE Notifier" --repo "$GITHUB_REPOSITORY"
-          gh workflow enable "Keepalive" --repo "$GITHUB_REPOSITORY"
+          gh workflow enable nikkei_check.yml --repo "$GITHUB_REPOSITORY" || true
+          gh workflow enable keepalive.yml --repo "$GITHUB_REPOSITORY" || true

@@ -29,6 +29,10 @@ import pandas as pd
 import requests
 import yfinance as yf
 
+from env_loader import load_env
+
+load_env()
+
 TICKER = "^N225"
 MA_SHORT = 5
 MA_MID = 20
